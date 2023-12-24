@@ -6,9 +6,9 @@ from . models import *
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('category_name',)}
 
-admin.site.register(ProductCategory)
+admin.site.register(ProductCategory, CategoryAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('product_name',)}
 
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)
