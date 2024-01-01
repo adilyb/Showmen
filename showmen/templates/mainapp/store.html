@@ -2,7 +2,11 @@
 {% load static %}
 {% block content %}
 
-
+<div class="category">
+	{% for i in cat %}
+		<b style="color: red;">/ {{i.category_name}}</b>
+	{% endfor %}
+</div>
 <div class="row">
 	{% for i in prod %}
 	<div class="col-lg-4">
