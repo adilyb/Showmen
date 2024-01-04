@@ -2,11 +2,7 @@
 {% load static %}
 {% block content %}
 
-<div class="category">
-	{% for i in cat %}
-		<b style="color: red;"><a href="{{i.get_url}}">{{i.category_name}}</a></b>
-	{% endfor %}
-</div>
+
 <div class="row">
 	{% for i in prod %}
 	<div class="col-lg-4">

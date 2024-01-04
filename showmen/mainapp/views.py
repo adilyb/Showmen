@@ -17,6 +17,10 @@ def store(request, slug_url=None):
         prod_filter_var = Product.objects.all().filter(available=True)
         
     categ_breadcomb = ProductCategory.objects.all()
-    return render(request, 'mainapp/store.html', {'prod':prod_filter_var, 'cat':categ_breadcomb})
+    return render(request, 'mainapp/store.html',{'prod':prod_filter_var, 'cat':categ_breadcomb})
+
+def cat(request): 
+    categ_breadcomb = ProductCategory.objects.all()
+    return render(request, 'mainapp/main.html',{'cat':categ_breadcomb})
 
 
