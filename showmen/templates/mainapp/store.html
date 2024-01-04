@@ -4,7 +4,7 @@
 
 <div class="category">
 	{% for i in cat %}
-		<b style="color: red;">/ {{i.category_name}}</b>
+		<b style="color: red;"><a href="{{i.get_url}}">{{i.category_name}}</a></b>
 	{% endfor %}
 </div>
 <div class="row">
