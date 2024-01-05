@@ -23,4 +23,13 @@ def cat(request):
     categ_breadcomb = ProductCategory.objects.all()
     return render(request, 'mainapp/main.html',{'cat':categ_breadcomb})
 
+def product_view(request, slug_url, product_slug):
+    try:
+        prod_filter_var = Product.objects.get(category_slug = slug_url )
+    except Exception as e:
+        raise e
+        
+    
+    return render(request, "mainapp/product_view.html", {'product': prod_filter_var})
+
 

@@ -7,7 +7,7 @@
 	{% for i in prod %}
 	<div class="col-lg-4">
 		{% if i.image %}
-		<img class="thumbnail" src="{{i.image.url}}" style="height: 400px;">
+		<img class="thumbnail" href={{i.get_product_url}} src="{{i.image.url}}" style="height: 400px;">
 		{% else %}
 		<img class="thumbnail" src="" style="height: 400px;">
 		{% endif %}
@@ -16,7 +16,7 @@
 			<hr>
 			<button class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
 
-			<a class="btn btn-outline-success" href="#">Buy Now</a>
+			<a class="btn btn-outline-success" href="{% url 'product_view' %}">Buy Now</a>
 			<h4 style="display: inline-block; float: right;"><strong>${{i.price}}</strong></h4>
 		</div>
 	</div>
