@@ -33,7 +33,7 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
     
-    def get_product_url(self):
+    def get_url(self):
         return reverse('product_view', args=[self.ProductCategory.slug, self.slug])
     
     
