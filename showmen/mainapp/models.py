@@ -1,6 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.urls import reverse
+from django.urls import reverse, NoReverseMatch
 # Create your models here.
 
 
@@ -16,7 +16,7 @@ class ProductCategory(models.Model):
     def __str__(self):
         return '{}'.format(self.category_name)
     
-    def get_url(self):
+    def cat_get_url(self):
         return reverse('categ', args=[self.slug])
     
     
@@ -33,10 +33,20 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
     
+    
     def get_url(self):
-        return reverse('product_view', args=[self.ProductCategory.slug, self.slug])
+        return reverse('product_view', args=[self.category.slug, self.slug])
     
     
+    
+    
+   
+      
+    
+    
+
+
+  
    
 
 

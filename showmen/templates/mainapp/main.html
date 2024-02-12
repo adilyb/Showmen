@@ -142,14 +142,12 @@
 	<!-- category navigation bar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-white">	
 		<div class="category">
-			
-			
 			<div class="dropdown">
 				<button class="dropbtn">Filter</button>
 				<div class="dropdown-content">
 					<b><a href="{% url 'index' %}" style="color: rgb(0, 0, 0);" >All Products</a></b>
 					{% for i in cat %}
-					<b><a href="{{i.get_url}}" style="color: rgb(0, 0, 0);" >{{i.category_name}}</a></b>
+					<b><a href="{{i.cat_get_url}}" style="color: rgb(0, 0, 0);" >{{i.category_name}}</a></b>
 					{% endfor %}
 				</div>
 			  </div>
@@ -172,10 +170,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
 	
 	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
-
-
-    
-
 
 </body>
 </html>

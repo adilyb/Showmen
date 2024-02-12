@@ -7,18 +7,16 @@
 	{% for i in prod %}
 	<div class="col-lg-4">
 		{% if i.image %}
-		{% for i in product %}
-		<img class="thumbnail" href="{% url 'product_view' category_slug=product.category.slug product_slug=product.slug %}" src="{{i.image.url}}" style="height: 400px;">
-		{% endfor %}
+		<img class="thumbnail" href="#" src="{{i.image.url}}" style="height: 400px;">
 		{% else %}
 		<img class="thumbnail" src="" style="height: 400px;">
 		{% endif %}
 		<div class="box-element product">
 			<h6><strong></strong>{{i.product_desc|truncatechars:30}}</h6>
 			<hr>
-			<button class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+			<!-- <button class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button> -->
 
-			<a class="btn btn-outline-success" href="#">Buy Now</a>
+			<a class="btn btn-outline-success" href="{{i.get_url}}">Know More</a>
 			<h4 style="display: inline-block; float: right;"><strong>${{i.price}}</strong></h4>
 		</div>
 	</div>
