@@ -16,8 +16,8 @@ class ProductCategory(models.Model):
     def __str__(self):
         return '{}'.format(self.category_name)
     
-    def cat_get_url(self):
-        return reverse('categ', args=[self.slug])
+    def get_url(self):
+        return reverse('category_list', args=[self.slug])
     
     
 class Product(models.Model):
@@ -33,9 +33,8 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
     
-    
     def get_url(self):
-        return reverse('product_view', args=[self.category.slug, self.slug])
+        return reverse('product_detail_view', args=[self.category.slug, self.slug])
     
     
     

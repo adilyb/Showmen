@@ -1,9 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from . models import *
-# Create your views here.
-
-
-
+from django.db.models import Q
     
 def store(request, slug_url=None):
         
@@ -17,11 +14,15 @@ def store(request, slug_url=None):
     else:
         prod_filter_var = Product.objects.all().filter(available=True)
     
-    return render(request, 'mainapp/store.html',{'prod':prod_filter_var})
+    context = {'prod':prod_filter_var}
+    return render(request, 'mainapp/store.html', context)
 
-def cat(request): 
-    categ_breadcomb = ProductCategory.objects.all()
-    return render(request, 'mainapp/main.html',{'cat':categ_breadcomb})
+
+def category_list(request): 
+    queryset = ProductCategory.objects.all()
+    
+    context = {'categorylist':queryset}
+    return render(request, 'mainapp/main.html', context)
 
 def product_view(request, slug_url, product_slug):
     try:
@@ -33,3 +34,15 @@ def product_view(request, slug_url, product_slug):
     return render(request, "mainapp/product_view.html", {'prod': prod})
 
 
+def search(request):
+    
+    query = None
+    result = None
+    if "q" in request.GET:
+        query = request.GET['q']
+        result = Product.objects.all().filter(Q(product_name__icontains=query) | Q(product_desc__icontains=query))
+    else:
+        result = Product.objects.all()
+        
+    context = {'result': result}
+    return render(request, "mainapp/search.html", context)

@@ -125,8 +125,17 @@
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#">Store <span class="sr-only">(current)</span></a>
 	      </li>
+		  
 
 	    </ul>
+		<div class="form-inline my-2 my-lg-0">
+			<form class="d-flex" role="search" action="{% url 'search' %}" method="get" >
+				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			  </form>
+
+	   </div>
+	   
 	    <div class="form-inline my-2 my-lg-0">
 	     	<a href="#"class="btn btn-warning">Login</a>
 	     	
@@ -146,8 +155,8 @@
 				<button class="dropbtn">Filter</button>
 				<div class="dropdown-content">
 					<b><a href="{% url 'index' %}" style="color: rgb(0, 0, 0);" >All Products</a></b>
-					{% for i in cat %}
-					<b><a href="{{i.cat_get_url}}" style="color: rgb(0, 0, 0);" >{{i.category_name}}</a></b>
+					{% for i in category_list %}
+					<b><a href="{{i.get_url}}" style="color: rgb(0, 0, 0);" >{{i.category_name}}</a></b>
 					{% endfor %}
 				</div>
 			  </div>

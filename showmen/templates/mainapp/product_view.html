@@ -5,13 +5,14 @@
 
 {% block content %}
 
+
 <section id="services" class="services section-bg">
     <div class="row row-sm">
         <div class="col-md-6 _boxzoom">
             <div class="_product-images">
                 <div class="picZoomer">
-                    {% if i.image %}
-                    <img class="my_img" src="{{i.image.url}}" style="height: 400px;">
+                    {% if prod.image %}
+                    <img class="my_img" src="{{prod.image.url}}" style="height: 400px;">
                     {% else %}
                     <img class="my_img" src="" style="height: 400px;">
                     {% endif %}
@@ -20,11 +21,11 @@
         </div>
         <div class="col-md-6">
             <div class="_product-detail-content">
-                <p class="_p-name"> Milton Bottle </p>
+                <p class="_p-name">{{ prod.product_name }}</p>
                 <div class="_p-price-box">
                     <div class="p-list">
-                        <span> M.R.P. : <i class="fa fa-inr"></i> <del> 1399 </del> </span>
-                        <span class="price"> Rs. 699 </span>
+                        <span> M.R.P. : <i class="fa fa-inr"></i> <del> 2299 </del> </span>
+                        <span class="price"> Rs. {{ prod.price }} </span>
                     </div>
                     <div class="_p-add-cart">
                         <div class="_p-qty">
@@ -36,25 +37,7 @@
                     </div>
                     <div class="_p-features">
                         <span> Description About this product:-  </span>
-                        Solid color polyester/linen full blackout thick sunscreen floor curtain
-                        Type: General Pleat
-                        Applicable Window Type: Flat Window
-                        Format: Rope
-                        Opening and Closing Method: Left and Right Biparting Open
-                        Processing Accessories Cost: Included
-                        Installation Type: Built-in
-                        Function: High Shading(70%-90%)
-                        Material: Polyester / Cotton
-                        Style: Classic
-                        Pattern: Embroidered
-                        Location: Window
-                        Technics: Woven
-                        Use: Home, Hotel, Hospital, Cafe, Office
-                        Feature: Blackout, Insulated, Flame Retardant
-                        Place of Origin: India
-                        Name: Curtain
-                        Usage: Window Decoration
-                        Keywords: Ready Made Blackout Curtain
+                        {{ prod.product_desc }}
                     </div>
                     <form action="" method="post" accept-charset="utf-8">
                         <ul class="spe_ul"></ul>
