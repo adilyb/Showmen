@@ -1,28 +1,45 @@
 from django.shortcuts import render, get_object_or_404
 from . models import *
 from django.db.models import Q
+from django.core.paginator import Paginator
+    
+    
     
 def store(request, slug_url=None):
         
     categ_slug_var = None
-    prod_filter_var = None
+    product_list = None
     
     if slug_url != None:
         categ_slug_var = get_object_or_404(ProductCategory, slug=slug_url)
-        prod_filter_var = Product.objects.filter(category=categ_slug_var, available=True)
+        product_list = Product.objects.filter(category=categ_slug_var, available=True)
         
     else:
-        prod_filter_var = Product.objects.all().filter(available=True)
-    
-    context = {'prod':prod_filter_var}
-    return render(request, 'mainapp/store.html', context)
+        product_list = Product.objects.all().filter(available=True)
+        paginator = Paginator(product_list, 3)
+        try:
+            page=int(request.GET.get('page', '1'))
+        except:
+            page=1
+        try:
+            product=paginator.page(page)
+        except:
+            product=paginator.page(paginator.num_pages)
+            
+        
+    return render(request, 'mainapp/store.html', {'products':product})
+
+
 
 
 def category_list(request): 
+    
     queryset = ProductCategory.objects.all()
     
-    context = {'categorylist':queryset}
-    return render(request, 'mainapp/main.html', context)
+    return render(request, 'mainapp/main.html', {'categorylist':queryset})
+
+
+
 
 def product_view(request, slug_url, product_slug):
     try:
@@ -32,6 +49,8 @@ def product_view(request, slug_url, product_slug):
         raise e
     
     return render(request, "mainapp/product_view.html", {'prod': prod})
+
+
 
 
 def search(request):
@@ -44,5 +63,5 @@ def search(request):
     else:
         result = Product.objects.all()
         
-    context = {'result': result}
-    return render(request, "mainapp/search.html", context)
+    return render(request, "mainapp/search.html", {'result': result})
+

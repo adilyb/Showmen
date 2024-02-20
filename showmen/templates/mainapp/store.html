@@ -5,7 +5,7 @@
 
 <div class="row">
 	
-	{% for i in prod %}
+	{% for i in products.object_list %}
 	<div class="col-lg-4">
 		{% if i.image %}
 		<img class="thumbnail" href="#" src="{{i.image.url}}" style="height: 400px;">
@@ -20,8 +20,17 @@
 			<a class="btn btn-outline-success" href="{{i.get_url}}">Know More</a>
 			<h4 style="display: inline-block; float: right;"><strong>${{i.price}}</strong></h4>
 		</div>
+		
 	</div>
+	
 	{% endfor %}
+
+	<div class="mx-auto">
+		{% for i in products.paginator.page_range %}
+			<a href="?page={{i}}" class="btn btn-light btn-sm {% if products.number == i%} activate {% endif %} ">{{i}}</a>
+		{% endfor %}
+	</div>
+	
 </div>
 
 
