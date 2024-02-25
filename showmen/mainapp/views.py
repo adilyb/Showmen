@@ -16,7 +16,7 @@ def store(request, slug_url=None):
         
     else:
         product_list = Product.objects.all().filter(available=True)
-        paginator = Paginator(product_list, 3)
+        paginator = Paginator(product_list, 6)
         try:
             page=int(request.GET.get('page', '1'))
         except:
@@ -63,5 +63,5 @@ def search(request):
     else:
         result = Product.objects.all()
         
-    return render(request, "mainapp/search.html", {'result': result})
+    return render(request, "mainapp/search.html", {'result': result, 'query': query})
 
