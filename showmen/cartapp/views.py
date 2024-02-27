@@ -4,7 +4,14 @@ from django.shortcuts import render
 
 
 def cart(request):
-    return render(request, 'mainapp/cart.html')
+    return render(request, 'cart.html', {})
 
-def checkout(request):
-    return render(request, 'mainapp/checkout.html')
+def add(request):
+    pass
+
+def update(request):
+    pass
+
+def delete(request):
+    pass
+

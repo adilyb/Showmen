@@ -27,7 +27,7 @@ def store(request, slug_url=None):
             product=paginator.page(paginator.num_pages)
             
         
-    return render(request, 'mainapp/store.html', {'products':product})
+    return render(request, 'store.html', {'products':product})
 
 
 
@@ -36,7 +36,7 @@ def category_list(request):
     
     queryset = ProductCategory.objects.all()
     
-    return render(request, 'mainapp/main.html', {'categorylist':queryset})
+    return render(request, 'main.html', {'categorylist':queryset})
 
 
 
@@ -48,7 +48,7 @@ def product_view(request, slug_url, product_slug):
     except Exception as e:
         raise e
     
-    return render(request, "mainapp/product_view.html", {'prod': prod})
+    return render(request, "product_view.html", {'prod': prod})
 
 
 
@@ -63,5 +63,5 @@ def search(request):
     else:
         result = Product.objects.all()
         
-    return render(request, "mainapp/search.html", {'result': result, 'query': query})
+    return render(request, "search.html", {'result': result, 'query': query})
 
