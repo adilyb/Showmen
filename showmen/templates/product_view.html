@@ -79,8 +79,9 @@
          },
 
          success: function(json){
-            console.log(json)
-            alert("reached")
+            
+            document.getElementById("cart-total").textContent = json.qty
+            
             
 
          },
