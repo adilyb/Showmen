@@ -27,14 +27,19 @@
                   <span> M.R.P. : <i class="fa fa-inr"></i> <del> 2299 </del> </span>
                   <span class="price"> Rs. {{ prod.price }} </span>
                </div>
-               <div class="_p-add-cart">
-                  <div class="_p-qty">
-                     <span>Add Quantity</span>
-                     <div class="value-button decrease_" id="" value="Decrease Value">-</div>
-                     <input type="number" name="qty" id="number" value="1" />
-                     <div class="value-button increase_" id="" value="Increase Value">+</div>
+               
+                  <div class="row ">
+                     <div class="col-md-2">Quantity: </div>
+                     <div class="col-md-2">
+                        <select class="form-select" id="qty-cart" aria-label="Default select example">
+                           <option selected>1</option>
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                         </select>
+                     </div>
                   </div>
-               </div>
+              
                <div class="_p-features">
                   <span> Description About this product:- </span>
                   {{ prod.product_desc }}
@@ -74,6 +79,7 @@
          url: '{% url "add_cart" %}',
          data: {
             product_id: $("#cart-id").val(),
+            product_qty: $("#qty-cart option:selected").text(),
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post',
          },

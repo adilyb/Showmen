@@ -12,6 +12,7 @@ def store(request, slug_url=None):
     
     if slug_url != None:
         categ_slug_var = get_object_or_404(ProductCategory, slug=slug_url)
+        
         product_list = Product.objects.filter(category=categ_slug_var, available=True)
         
     else:
@@ -35,7 +36,6 @@ def store(request, slug_url=None):
 def category_list(request): 
     
     queryset = ProductCategory.objects.all()
-    
     return render(request, 'main.html', {'categorylist':queryset})
 
 

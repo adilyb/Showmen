@@ -173,18 +173,33 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-md-4 quantity">
-													<label for="quantity">Quantity:</label>
-													<input id="quantity" type="number" value="1"
-														class="form-control quantity-input">
-												</div>
+												
 												<div class="col-md-3 price">
 													<span>{{i.price}}</span>
 												</div>
+
+												<div class="row" >
+													<div class="col-md-2">Quantity: </div>
+													<div class="col-md-2">
+													   <select class="form-select" id="qty-cart" aria-label="Default select example" style="padding-right: 10px;">
+														{% for key, value in prod_quantities.items %}
+														{% if key == i.id|slugify %}
+															<option selected>{{ value }}</option>
+														{% endif %}
+													{% endfor %}
+												
+														  <option value="1">1</option>
+														  <option value="2">2</option>
+														  <option value="3">3</option>
+														</select>
+													</div>
+												 </div>
+												
 											</div>
 										</div>
 									</div>
 								</div>
+								
 							</div>
 							{% endfor %}
 							{% else %}
@@ -192,6 +207,7 @@
 							{% endif %}
 						</div>
 					</div>
+					
 					<div class="col-md-12 col-lg-4">
 						<div class="summary">
 							<h3>Summary</h3>
@@ -207,6 +223,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</section>
