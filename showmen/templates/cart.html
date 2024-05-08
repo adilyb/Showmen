@@ -166,7 +166,7 @@
 											<div class="row">
 												<div class="col-md-5 product-name">
 													<div class="product-name">
-														<a href="#">{{ i.product_name}}</a>
+														<a href="#">{{i.product_name}}</a>
 														<div class="product-info">
 															<div>Description: <span class="value">{{i.product_desc}}</span></div>
 
@@ -181,12 +181,12 @@
 												<div class="row" >
 													<div class="col-md-2">Quantity: </div>
 													<div class="col-md-2">
-													   <select class="form-select" id="qty-cart" aria-label="Default select example" style="padding-right: 10px;">
+													   <select class="form-select" id="qty-cart" aria-label="Default select example" style="padding-right: 10px;" id="select{{ i.id }}">
 														{% for key, value in prod_quantities.items %}
 														{% if key == i.id|slugify %}
 															<option selected>{{ value }}</option>
 														{% endif %}
-													{% endfor %}
+													    {% endfor %}
 												
 														  <option value="1">1</option>
 														  <option value="2">2</option>
@@ -194,6 +194,24 @@
 														</select>
 													</div>
 												 </div>
+												
+												
+												 <a class="btn-theme btn btn-secondary" href="{% url 'index' %}">Home</a></button>
+												 
+												 
+												 <button class="btn-theme btn btn-secondary update-btn" data-index="{{ i.id }}" >Update</button>
+												
+												
+												 <!-- <div class="row">
+													<div class="col-md-3">
+														
+													</div>
+
+													<div class="col-md-3">
+														
+													</div>
+												 </div>
+												  -->
 												
 											</div>
 										</div>
@@ -228,4 +246,39 @@
 		</div>
 	</section>
 </main>
+
+<script>
+   
+	$(document).on('click', '.update-btn', function(e){
+	   e.preventDefault();
+		var productid = $(this).data('index');
+	   $.ajax({
+		  type: 'POST',
+		  url: '{% url "update_cart" %}',
+		  data: {
+			 product_id: $(this).data('index'),
+			 product_qty: $("#select" + productid + "option:selected").text(),
+			 csrfmiddlewaretoken: '{{ csrf_token }}',
+			 action: 'post',
+		  },
+ 
+		  success: function(json){
+			 
+			location.reload()
+			
+						 
+			 
+ 
+		  },
+ 
+		  error: function(xhr, errmsg, err,){
+ 
+		  },
+ 
+	   })
+ 
+ 
+	})
+ </script>
+
 {% endblock content %}
